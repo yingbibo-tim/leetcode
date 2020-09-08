@@ -36,25 +36,26 @@ package com.leet.code.traning;
 public class P29DivideTwoIntegers {
 	public static void main(String[] args) {
 		Solution solution = new P29DivideTwoIntegers().new Solution();
-		System.out.println(solution.divide(-2147483648,-1));
+		System.out.println(solution.divide(-2147483648,-3));
 	}
 
 	//leetcode submit region begin(Prohibit modification and deletion)
 	class Solution {
 		public int divide(int dividend, int divisor) {
+			if(dividend==Integer.MIN_VALUE&&divisor==-1) {
+				return Integer.MAX_VALUE;
+			}
 			if(dividend==0){
 				return 0;
 			}
 			int count = 0;
-			int total = 0;
-			int absDivisor = -Math.abs(divisor);
 			int absDividend = -Math.abs(dividend);
-			while (total<=0&&total>=absDividend){
-				total+=absDivisor;
+			int absDivisor = -Math.abs(divisor);
+			while(absDividend<=absDivisor){
+				absDividend-=absDivisor;
 				count++;
 			}
-
-			return count-1>=0?((dividend>0&&divisor>0)||(dividend<0&&divisor<0))?count-1:-(count-1):0;
+			return ((dividend>=0&&divisor>=0)||(dividend<=0&&divisor<=0))?count:-count;
 
 		}
 	}

@@ -29,44 +29,39 @@
 // 👍 708 👎 0
 
 package com.leet.code.traning;
+
 //java:搜索插入位置
-public class P35SearchInsertPosition{
-    public static void main(String[] args){
-        Solution solution = new P35SearchInsertPosition().new Solution();
-        solution.searchInsert(new int[]{1,3,5,6},2);
-    }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int searchInsert(int[] nums, int target) {
-        if(nums==null||nums.length==0){
-            return 0;
-        }
+public class P35SearchInsertPosition {
+	public static void main(String[] args) {
+		Solution solution = new P35SearchInsertPosition().new Solution();
+		solution.searchInsert(new int[]{1, 3, 5, 6}, 2);
+	}
 
-        int leftIndex = 0;
-        int rightIndex = nums.length-1;
-        while(leftIndex<=rightIndex){
-            int midIndex = (rightIndex+leftIndex)/2;
-            int mid = nums[midIndex];
-            if(target==mid){
-                return midIndex;
-            }else if(mid>target){
-                rightIndex--;
-            }else{
-                leftIndex++;
-            }
-        }
-        if(leftIndex==0){
-            return leftIndex;
-        }else if(rightIndex==nums.length-1){
-            return rightIndex;
-        }else{
-            return leftIndex;
-        }
+	//leetcode submit region begin(Prohibit modification and deletion)
+	class Solution {
+		public int searchInsert(int[] nums, int target) {
+			if (nums == null || nums.length == 0) {
+				return 0;
+			}
+
+			int leftIndex = 0;
+			int rightIndex = nums.length - 1;
+			while (leftIndex <= rightIndex) {
+				int midIndex = (rightIndex + leftIndex) / 2;
+				int mid = nums[midIndex];
+				if (target == mid) {
+					return midIndex;
+				} else if (mid > target) {
+					rightIndex--;
+				} else {
+					leftIndex++;
+				}
+			}
+			return leftIndex;
 
 
-
-    }
-}
+		}
+	}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

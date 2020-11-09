@@ -55,12 +55,14 @@
 package com.leet.code.traning;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 //java:二叉树的中序遍历
-public class P94BinaryTreeInorderTraversal1 {
+public class P94BinaryTreeInorderTraversal2 {
 	public static void main(String[] args) {
-		Solution solution = new P94BinaryTreeInorderTraversal1().new Solution();
+		Solution solution = new P94BinaryTreeInorderTraversal2().new Solution();
 	}
 	//leetcode submit region begin(Prohibit modification and deletion)
 
@@ -82,7 +84,7 @@ public class P94BinaryTreeInorderTraversal1 {
 	class Solution {
 		public List<Integer> inorderTraversal(TreeNode root) {
 			List<Integer> resultList = new ArrayList<>();
-			inorderTraversal1(resultList,root);
+			inorderTraversal(resultList,root);
 			return resultList;
 		}
 
@@ -92,16 +94,17 @@ public class P94BinaryTreeInorderTraversal1 {
 		 * @param resultList
 		 * @param root
 		 */
-		private void inorderTraversal1(List<Integer> resultList, TreeNode root) {
-			if(root!=null) {
-				int nodeValue = root.val;
-				TreeNode leftTreeNode = root.left;
-				TreeNode rightTreeNode = root.right;
-				inorderTraversal1(resultList,leftTreeNode);
-				resultList.add(nodeValue);
-				inorderTraversal1(resultList,rightTreeNode);
+		private void inorderTraversal(List<Integer> resultList, TreeNode root) {
+			Deque<TreeNode> deque = new LinkedList<>();
+			while(root!=null||!deque.isEmpty()){
+				while(root!=null) {
+					deque.push(root);
+					root = root.left;
+				}
 
-
+				TreeNode currentTreeNode = deque.poll();
+				resultList.add(currentTreeNode.val);
+				root = currentTreeNode.right;
 			}
 		}
 	}
